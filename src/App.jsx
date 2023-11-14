@@ -19,7 +19,10 @@ function App() {
           element={<ProjectDetailsPage />}
         ></Route>
         <Route path="/projects/create" element={<CreateProjectPage />}></Route>
-        <Route path="/projects/edit/:projectId" element={<EditProjectPage />}></Route>
+        <Route
+          path="/projects/edit/:projectId"
+          element={<EditProjectPage />}
+        ></Route>
       </Routes>
     </div>
   );

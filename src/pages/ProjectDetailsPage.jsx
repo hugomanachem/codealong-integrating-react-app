@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import AddTask from "../components/AddTask";
 
 const API_URL = "https://project-management-api-4641927fee65.herokuapp.com";
 
@@ -16,7 +17,9 @@ function ProjectDetailsPage() {
         const oneProject = response.data;
         setProject(oneProject);
       })
-      .catch((error) => console.log("error while getting info of the project : ",error));
+      .catch((error) =>
+        console.log("error while getting info of the project : ", error)
+      );
   };
 
   useEffect(() => {
@@ -40,6 +43,11 @@ function ProjectDetailsPage() {
             <p>{task.description}</p>
           </li>
         ))}
+
+      <AddTask 
+        projectId={projectId} 
+        callbackToUpdateProject={getProject} 
+      />
 
       <Link to="/projects">
         <button>Back to projects</button>
