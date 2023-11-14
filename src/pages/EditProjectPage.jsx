@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-
 const API_URL = "https://project-management-api-4641927fee65.herokuapp.com";
 
 function EditProjectPage() {
@@ -37,11 +36,22 @@ function EditProjectPage() {
     axios
       .put(`${API_URL}/projects/${projectId}`, requestBody)
       .then((response) => {
-        console.log("Project updated!")
+        console.log("Project updated!");
         navigate(`/projects/${projectId}`);
       })
       .catch((error) =>
         console.log("error during update of the project : ", error)
+      );
+  };
+
+  const deleteProject = () => {
+    axios
+      .delete(`${API_URL}/projects/${projectId}`)
+      .then((response) => {
+        navigate(`/projects/`);
+      })
+      .catch((error) =>
+        console.log("error while deleting this project : ", error)
       );
   };
 
@@ -82,6 +92,8 @@ function EditProjectPage() {
       <Link to={`/projects/${projectId}`}>
         <button>Back to project</button>
       </Link>
+
+      <button onClick={deleteProject}>Delete project</button>
     </div>
   );
 }
